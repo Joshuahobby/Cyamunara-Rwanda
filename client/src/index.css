@@ -69,6 +69,16 @@
   }
 }
 
+/* Touch-friendly defaults */
+@layer base {
+  button, 
+  [role="button"],
+  [type="button"],
+  [type="submit"] {
+    @apply min-h-[44px] min-w-[44px];
+  }
+}
+
 /* Custom Font Classes */
 .font-montserrat {
   font-family: 'Montserrat', sans-serif;

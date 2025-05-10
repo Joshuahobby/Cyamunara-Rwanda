@@ -49,9 +49,9 @@ const Header = () => {
               </Link>
             ) : (
               <Link href={link.href} key={index}>
-                <div className={`text-navy-dark font-medium hover:text-gold transition-300 ${location === link.href ? "text-gold" : ""} cursor-pointer`}>
+                <button className={`text-navy-dark font-medium hover:text-gold transition-300 ${location === link.href ? "text-gold" : ""} cursor-pointer`}>
                   {link.label}
-                </div>
+                </button>
               </Link>
             )
           ))}

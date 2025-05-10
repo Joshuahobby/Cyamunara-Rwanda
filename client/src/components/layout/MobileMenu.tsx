@@ -42,7 +42,7 @@ const MobileMenu = ({ isOpen, toggleMenu }: MobileMenuProps) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div 
-          className="md:hidden bg-white border-t border-gray-200 overflow-hidden shadow-lg fixed top-[60px] left-0 right-0 z-50"
+          className="md:hidden bg-white/95 backdrop-blur-sm border-t border-gray-200 overflow-hidden shadow-lg fixed top-[60px] left-0 right-0 z-50"
           initial="closed"
           animate="open"
           exit="closed"

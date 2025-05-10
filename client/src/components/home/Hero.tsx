@@ -6,7 +6,7 @@ import { companyInfo } from "@/lib/constants";
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center pt-16 sm:pt-20 pb-12 sm:pb-16 overflow-hidden">
       {/* Background with gradient overlay */}
       <div className="absolute inset-0 bg-navy z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-navy-dark via-navy to-navy-dark z-10"></div>
@@ -33,7 +33,7 @@ const Hero = () => {
           {/* Left column - Text content */}
           <div className="order-2 lg:order-1">
             <motion.h1 
-              className="text-3xl sm:text-4xl lg:text-5xl font-montserrat font-bold text-white leading-tight mb-4"
+              className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-montserrat font-bold text-white leading-tight mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
