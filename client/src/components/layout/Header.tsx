@@ -33,9 +33,9 @@ const Header = () => {
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
         <Link href="/">
-          <a className="flex items-center cursor-pointer">
+          <div className="flex items-center cursor-pointer">
             <img src="/logo.svg" alt="Cyamunara Rwanda Ltd" className="h-10" />
-          </a>
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
@@ -49,9 +49,9 @@ const Header = () => {
               </Link>
             ) : (
               <Link href={link.href} key={index}>
-                <a className={`text-navy-dark font-medium hover:text-gold transition-300 ${location === link.href ? "text-gold" : ""}`}>
+                <div className={`text-navy-dark font-medium hover:text-gold transition-300 ${location === link.href ? "text-gold" : ""} cursor-pointer`}>
                   {link.label}
-                </a>
+                </div>
               </Link>
             )
           ))}

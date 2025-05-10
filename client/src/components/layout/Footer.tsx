@@ -41,7 +41,7 @@ const Footer = () => {
                 {navLinks.map((link, index) => (
                   <li key={index}>
                     <Link href={link.href}>
-                      <a className="hover:text-gold transition-300">{link.label}</a>
+                      <div className="hover:text-gold transition-300 cursor-pointer">{link.label}</div>
                     </Link>
                   </li>
                 ))}
@@ -54,7 +54,7 @@ const Footer = () => {
                 {servicesOverview.map((service, index) => (
                   <li key={index}>
                     <Link href="/services">
-                      <a className="hover:text-gold transition-300">{service.title}</a>
+                      <div className="hover:text-gold transition-300 cursor-pointer">{service.title}</div>
                     </Link>
                   </li>
                 ))}
@@ -95,11 +95,11 @@ const Footer = () => {
           </p>
           <p className="opacity-80 mt-2 md:mt-0">
             <Link href="/privacy-policy">
-              <a className="hover:text-gold transition-300">Privacy Policy</a>
+              <span className="hover:text-gold transition-300 cursor-pointer">Privacy Policy</span>
             </Link>
             {" | "}
             <Link href="/terms-of-service">
-              <a className="hover:text-gold transition-300">Terms of Service</a>
+              <span className="hover:text-gold transition-300 cursor-pointer">Terms of Service</span>
             </Link>
           </p>
         </div>

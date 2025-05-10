@@ -14,12 +14,12 @@ const MobileMenu = ({ isOpen, toggleMenu }: MobileMenuProps) => {
       <div className="container mx-auto px-4 py-3">
         {navLinks.map((link, index) => (
           <Link href={link.href} key={index}>
-            <a 
-              className={`block py-2 hover:text-gold transition-300 ${location === link.href ? "text-gold" : "text-navy-dark"}`}
+            <div 
+              className={`block py-2 hover:text-gold transition-300 ${location === link.href ? "text-gold" : "text-navy-dark"} cursor-pointer`}
               onClick={toggleMenu}
             >
               {link.label}
-            </a>
+            </div>
           </Link>
         ))}
       </div>
