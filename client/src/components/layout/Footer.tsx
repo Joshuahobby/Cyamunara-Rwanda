@@ -9,7 +9,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="mb-8 md:mb-0">
             <div className="mb-4">
-              <img src="/logo.svg" alt="Cyamunara Rwanda Ltd" className="h-10 -ml-1" />
+              <span className="text-white font-montserrat font-bold text-xl">CYAMUNARA <span className="text-gold">RWANDA</span></span>
             </div>
             <p className="max-w-xs opacity-80 mb-4">
               Rwanda's premier auctioning and valuation services company with over {companyInfo.experience} of trusted experience.
