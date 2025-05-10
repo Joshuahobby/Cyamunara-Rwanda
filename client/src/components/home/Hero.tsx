@@ -41,7 +41,7 @@ const Hero = () => {
               <span className="block mb-1">Rwanda's leading</span>
               <span className="text-gold">Auctioning</span><span className="text-gold">,</span>
               <span className="text-gold">Assets Valuation</span>
-              <span> and <span className="text-gold">Business Advisory</span></span>
+              <span> and <span className="text-gold">Business Advisory </span></span>
               <span>Services</span>
             </motion.h1>
             
