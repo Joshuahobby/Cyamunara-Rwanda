@@ -25,8 +25,19 @@ const ClientsPartners = () => {
         modules={[Pagination, Autoplay]}
         spaceBetween={30}
         slidesPerView={1}
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        pagination={{ 
+          clickable: true,
+          dynamicBullets: true
+        }}
+        autoplay={{ 
+          delay: 3000, 
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true
+        }}
+        loop={true}
+        speed={800}
+        effect="slide"
+        grabCursor={true}
         breakpoints={{
           640: { slidesPerView: 2 },
           768: { slidesPerView: 3 },
