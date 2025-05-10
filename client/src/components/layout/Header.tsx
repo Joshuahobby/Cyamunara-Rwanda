@@ -30,7 +30,7 @@ const Header = () => {
 
   return (
     <header className={`bg-white fixed w-full z-50 transition-300 ${isScrolled ? "shadow-md" : ""}`}>
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div className="container mx-auto px-4 py-3 flex justify-between items-center relative">
         {/* Logo */}
         <Link href="/">
           <div className="flex items-center cursor-pointer">
