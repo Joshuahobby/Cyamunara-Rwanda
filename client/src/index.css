@@ -5,31 +5,31 @@
 @tailwind utilities;
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 20 14.3% 4.1%;
-  --muted: 60 4.8% 95.9%;
-  --muted-foreground: 25 5.3% 44.7%;
+  --background: 210 40% 98%;
+  --foreground: 212 35% 15%;
+  --muted: 212 30% 95%;
+  --muted-foreground: 212 15% 45%;
   --popover: 0 0% 100%;
-  --popover-foreground: 20 14.3% 4.1%;
+  --popover-foreground: 212 35% 15%;
   --card: 0 0% 100%;
-  --card-foreground: 20 14.3% 4.1%;
-  --border: 20 5.9% 90%;
-  --input: 20 5.9% 90%;
+  --card-foreground: 212 35% 15%;
+  --border: 212 25% 90%;
+  --input: 212 25% 90%;
   --primary: 212 95% 15%;
-  --primary-foreground: 211 100% 99%;
-  --secondary: 60 4.8% 95.9%;
-  --secondary-foreground: 24 9.8% 10%;
-  --accent: 45 100% 50%;
-  --accent-foreground: 24 9.8% 10%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 60 9.1% 97.8%;
-  --ring: 20 14.3% 4.1%;
-  --radius: 0.5rem;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 212 30% 95%;
+  --secondary-foreground: 212 35% 15%;
+  --accent: 45 95% 50%;
+  --accent-foreground: 212 35% 15%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 212 95% 15%;
+  --radius: 0.75rem;
   --navy: 212 95% 15%;
   --navy-dark: 213 85% 12%;
-  --gold: 45 100% 50%;
-  --light-gray: 0 0% 98%;
-  --medium-gray: 210 10% 30%;
+  --gold: 45 95% 50%;
+  --light-gray: 210 40% 98%;
+  --medium-gray: 212 15% 45%;
 }
 
 .dark {
@@ -61,11 +61,27 @@
   }
 
   body {
-    @apply font-opensans antialiased bg-background text-foreground;
+    @apply font-opensans antialiased bg-background text-foreground tracking-tight;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-montserrat font-bold;
+    @apply font-montserrat font-bold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  p {
+    @apply leading-relaxed text-muted-foreground;
   }
 }
 
@@ -120,13 +136,25 @@
 /* Hover Effects */
 .hover-gold:hover {
   color: hsl(var(--gold));
+  transform: translateY(-1px);
 }
 
 .hover-bg-gold:hover {
   background-color: hsl(var(--gold));
+  transform: translateY(-1px);
 }
 
 /* Transition Effects */
 .transition-300 {
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card Effects */
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+}
+
+/* Button Effects */
+.button-hover {
+  @apply transition-all duration-300 hover:shadow-md active:scale-95;
 }
