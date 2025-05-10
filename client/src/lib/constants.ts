@@ -101,30 +101,22 @@ export const features = [
 
 // Client/Partner logos data
 export const clients = [
-  {
-    name: "SONARWA Life",
-    icon: "building"
-  },
-  {
-    name: "MYFAIR Insurance",
-    icon: "shield-alt"
-  },
-  {
-    name: "Canadian Embassy",
-    icon: "flag"
-  },
-  {
-    name: "Rwanda Golf Courses",
-    icon: "golf-ball"
-  },
-  {
-    name: "SANS Mark Ltd",
-    icon: "check-circle"
-  },
-  {
-    name: "Right to Play",
-    icon: "child"
-  }
+  { name: "SONARWA LIFE", icon: "building" },
+  { name: "MYFAIR INSURANCE", icon: "shield-alt" },
+  { name: "CANADIAN EMBASSY", icon: "flag" },
+  { name: "ALARM BUSINESS CENTER", icon: "building" },
+  { name: "ENERGO RWANDA", icon: "bolt" },
+  { name: "ALBEF", icon: "building" },
+  { name: "FOREVER BUSINESS EXPLORER", icon: "chart-line" },
+  { name: "GLOBAL RECYCLING", icon: "recycle" },
+  { name: "M&NDA LTD", icon: "building" },
+  { name: "RWANDA NATIONAL UNION OF DEAF (RUND)", icon: "users" },
+  { name: "ATLANTIS MICROFINANCE", icon: "landmark" },
+  { name: "ACTION AID RWANDA", icon: "hands-helping" },
+  { name: "HLB-MN", icon: "building" },
+  { name: "DIAMOND WORLD WIDE LOGISTICS", icon: "truck" },
+  { name: "AMPERSAND RWANDA", icon: "charging-station" },
+  { name: "ASSOCIATION OF MICROFINANCE INSTITUTIONS IN RWANDA (AMIR)", icon: "university" }
 ];
 
 // Testimonials data
