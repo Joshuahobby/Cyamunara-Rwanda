@@ -9,6 +9,11 @@ import nodemailer from "nodemailer";
 export async function registerRoutes(app: Express): Promise<Server> {
   // Set up API routes
   app.post("/api/contact", async (req, res) => {
+    // Add session tracking
+    const sessionId = req.session.id;
+    
+    // Log attempt
+    console.log(`[${sessionId}] Contact form submission attempt`);
     try {
       // Validate the request body
       const contactData = contactSchema.parse(req.body);

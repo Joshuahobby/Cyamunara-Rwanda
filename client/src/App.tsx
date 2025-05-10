@@ -51,7 +51,8 @@ function Router() {
 
 function App() {
   return (
-    <TooltipProvider>
+    <ErrorBoundary>
+      <TooltipProvider>
       <div className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow">
@@ -60,6 +61,7 @@ function App() {
         <Footer />
       </div>
     </TooltipProvider>
+    </ErrorBoundary>
   );
 }
 
