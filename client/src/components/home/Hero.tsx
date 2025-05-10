@@ -42,9 +42,9 @@ const Hero = () => {
             </motion.div>
             
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-montserrat font-bold leading-tight mb-6">
-              <span className="block">Rwanda's Premier</span>
-              <span className="text-gold">Auctioning</span> & 
-              <span className="text-gold"> Valuation</span>
+              <span className="block">Rwanda's leading</span>
+              <span className="text-gold">Auctioning</span>, <span className="text-gold">Assets Valuation</span> 
+              <span className="block mt-1">and <span className="text-gold">Business Advisory</span> Services</span>
             </h1>
             
             <motion.p 
@@ -53,7 +53,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              Providing professional auctioning, valuation, and business advisory services to individuals and organizations across Rwanda.
+              Professional services tailored to individuals and organizations across Rwanda for over {companyInfo.experience}.
             </motion.p>
             
             <motion.div 
