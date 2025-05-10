@@ -109,9 +109,9 @@ const Hero = () => {
           </div>
         </div>
         
-        {/* Scroll down indicator - Fixed position at bottom of viewport */}
+        {/* Single responsive scroll indicator */}
         <motion.div 
-          className="fixed left-1/2 -translate-x-1/2 bottom-8 flex flex-col items-center cursor-pointer z-40 hidden sm:flex"
+          className="absolute left-1/2 -translate-x-1/2 bottom-8 flex flex-col items-center cursor-pointer z-40"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 1.2 }}
@@ -122,40 +122,10 @@ const Hero = () => {
             });
           }}
         >
-          <span className="text-white/70 text-xs mb-1">Scroll Down</span>
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-1">
+          <span className="text-white/70 text-xs mb-2">Scroll Down</span>
+          <div className="w-5 sm:w-6 h-8 sm:h-10 border-2 border-white/30 rounded-full flex justify-center p-1">
             <motion.div
-              className="w-2 h-2 bg-gold rounded-full"
-              animate={{ 
-                y: [0, 10, 0],
-                opacity: [0.5, 1, 0.5]
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop"
-              }}
-            />
-          </div>
-        </motion.div>
-        
-        {/* Mobile scroll indicator - Absolute position for mobile */}
-        <motion.div 
-          className="absolute left-1/2 -translate-x-1/2 bottom-0 flex flex-col items-center cursor-pointer z-40 sm:hidden"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 1.2 }}
-          onClick={() => {
-            window.scrollTo({
-              top: window.innerHeight,
-              behavior: 'smooth'
-            });
-          }}
-        >
-          <span className="text-white/70 text-xs mb-1">Scroll Down</span>
-          <div className="w-5 h-8 border-2 border-white/30 rounded-full flex justify-center p-1 mb-4">
-            <motion.div
-              className="w-1 h-1 bg-gold rounded-full"
+              className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-gold rounded-full"
               animate={{ 
                 y: [0, 10, 0],
                 opacity: [0.5, 1, 0.5]
