@@ -8,9 +8,8 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between">
           {/* Company Info */}
           <div className="mb-8 md:mb-0">
-            <div className="font-montserrat font-bold mb-4">
-              <div className="text-2xl">CYAMUNARA</div>
-              <div className="text-sm tracking-wider text-gold">RWANDA LTD</div>
+            <div className="mb-4">
+              <img src="/logo.svg" alt="Cyamunara Rwanda Ltd" className="h-10 -ml-1" />
             </div>
             <p className="max-w-xs opacity-80 mb-4">
               Rwanda's premier auctioning and valuation services company with over {companyInfo.experience} of trusted experience.

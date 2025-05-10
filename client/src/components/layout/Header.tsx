@@ -34,10 +34,7 @@ const Header = () => {
         {/* Logo */}
         <Link href="/">
           <a className="flex items-center cursor-pointer">
-            <div className="text-navy-dark font-montserrat font-bold">
-              <div className="text-2xl">CYAMUNARA</div>
-              <div className="text-sm tracking-wider">RWANDA LTD</div>
-            </div>
+            <img src="/logo.svg" alt="Cyamunara Rwanda Ltd" className="h-10" />
           </a>
         </Link>
 
