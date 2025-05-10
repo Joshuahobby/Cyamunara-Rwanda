@@ -1,3 +1,4 @@
+
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -108,15 +109,6 @@ const Hero = () => {
             </motion.div>
           </div>
         </div>
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop"
-              }}
-            />
-          </div>
-        </motion.div>
       </div>
     </section>
   );
