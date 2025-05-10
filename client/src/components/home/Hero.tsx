@@ -5,7 +5,7 @@ import { companyInfo } from "@/lib/constants";
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center py-10 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden">
       {/* Background with gradient overlay */}
       <div className="absolute inset-0 bg-navy z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-navy-dark via-navy to-navy-dark z-10"></div>
@@ -14,7 +14,7 @@ const Hero = () => {
       </div>
       
       {/* Main content container */}
-      <div className="container mx-auto px-4 relative z-30 pt-12 pb-8">
+      <div className="container mx-auto px-4 relative z-30">
         {/* Experience badge */}
         <motion.div 
           initial={{ opacity: 0, y: -10 }}
@@ -28,7 +28,7 @@ const Hero = () => {
           <span className="text-gold font-medium text-sm">{companyInfo.experience} years of Trusted Excellence</span>
         </motion.div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-center mb-12">
           {/* Left column - Text content */}
           <div className="order-2 lg:order-1">
             <motion.h1 
@@ -38,9 +38,9 @@ const Hero = () => {
               transition={{ duration: 0.7 }}
             >
               <span className="block mb-1">Rwanda's leading</span>
-              <span className="text-gold">Auctioning</span><span className="text-gold">,</span><br className="hidden sm:block" />
-              <span className="text-gold">Assets Valuation</span><br className="hidden sm:block" />
-              <span>and <span className="text-gold">Business Advisory</span></span><br className="hidden sm:block" />
+              <span className="text-gold">Auctioning</span><span className="text-gold">,</span>
+              <span className="text-gold">Assets Valuation</span>
+              <span> and <span className="text-gold">Business Advisory</span></span>
               <span>Services</span>
             </motion.h1>
             
@@ -109,9 +109,9 @@ const Hero = () => {
           </div>
         </div>
         
-        {/* Scroll down indicator */}
+        {/* Scroll down indicator - Fixed position at bottom of viewport */}
         <motion.div 
-          className="absolute left-1/2 -translate-x-1/2 bottom-4 flex flex-col items-center cursor-pointer"
+          className="fixed left-1/2 -translate-x-1/2 bottom-8 flex flex-col items-center cursor-pointer z-40 hidden sm:flex"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 1.2 }}
@@ -123,7 +123,37 @@ const Hero = () => {
           }}
         >
           <span className="text-white/70 text-xs mb-1">Scroll Down</span>
-          <div className="w-5 h-8 border-2 border-white/30 rounded-full flex justify-center p-1">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-1">
+            <motion.div
+              className="w-2 h-2 bg-gold rounded-full"
+              animate={{ 
+                y: [0, 10, 0],
+                opacity: [0.5, 1, 0.5]
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                repeatType: "loop"
+              }}
+            />
+          </div>
+        </motion.div>
+        
+        {/* Mobile scroll indicator - Absolute position for mobile */}
+        <motion.div 
+          className="absolute left-1/2 -translate-x-1/2 bottom-0 flex flex-col items-center cursor-pointer z-40 sm:hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 1.2 }}
+          onClick={() => {
+            window.scrollTo({
+              top: window.innerHeight,
+              behavior: 'smooth'
+            });
+          }}
+        >
+          <span className="text-white/70 text-xs mb-1">Scroll Down</span>
+          <div className="w-5 h-8 border-2 border-white/30 rounded-full flex justify-center p-1 mb-4">
             <motion.div
               className="w-1 h-1 bg-gold rounded-full"
               animate={{ 
