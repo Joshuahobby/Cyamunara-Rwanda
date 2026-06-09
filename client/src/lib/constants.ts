@@ -114,30 +114,130 @@ export const features = [
 
 // Client/Partner logos data
 export const clients = [
-  {
-    name: "SONARWA Life insurance",
-    icon: "building",
-  },
-  {
-    name: "MYFAIR Insurance",
-    icon: "shield-alt",
-  },
-  {
-    name: "Office of the high commissioner of Canada",
-    icon: "flag",
-  },
-  {
-    name: "Rwanda Ultimate Golf Courses",
-    icon: "golf-ball",
-  },
-  {
-    name: "SANS Mark Ltd",
-    icon: "check-circle",
-  },
-  {
-    name: "Right to Play",
-    icon: "child",
-  },
+  // Original partners
+  { name: "SONARWA Life Insurance", icon: "shield-alt" },
+  { name: "MYFAIR Insurance", icon: "shield-alt" },
+  { name: "Office of the High Commissioner of Canada", icon: "flag" },
+  { name: "Rwanda Ultimate Golf Courses", icon: "building" },
+  { name: "SANS Mark Ltd", icon: "building" },
+  { name: "Right to Play", icon: "users" },
+
+  // Banking & Finance
+  { name: "Bank of Kigali", icon: "landmark" },
+  { name: "Equity Bank Rwanda", icon: "landmark" },
+  { name: "I&M Bank Rwanda", icon: "landmark" },
+  { name: "BPR Bank Rwanda", icon: "landmark" },
+  { name: "Access Bank Rwanda", icon: "landmark" },
+  { name: "Cogebanque", icon: "landmark" },
+  { name: "Rwanda Development Bank (BRD)", icon: "landmark" },
+  { name: "National Bank of Rwanda (BNR)", icon: "landmark" },
+  { name: "GT Bank Rwanda", icon: "landmark" },
+  { name: "NCBA Bank Rwanda", icon: "landmark" },
+  { name: "Urwego Bank", icon: "landmark" },
+  { name: "Rwanda Microfinance Ltd", icon: "chart-line" },
+
+  // Insurance
+  { name: "Sanlam General Insurance", icon: "shield-alt" },
+  { name: "Prime Insurance Rwanda", icon: "shield-alt" },
+  { name: "RADIANT Insurance", icon: "shield-alt" },
+  { name: "UAP Insurance Rwanda", icon: "shield-alt" },
+  { name: "Britam Insurance Rwanda", icon: "shield-alt" },
+  { name: "CIAR Rwanda", icon: "shield-alt" },
+
+  // Government & Public Institutions
+  { name: "Rwanda Revenue Authority (RRA)", icon: "flag" },
+  { name: "Rwanda Development Board (RDB)", icon: "building" },
+  { name: "Rwanda Social Security Board (RSSB)", icon: "building" },
+  { name: "Rwanda Housing Authority (RHA)", icon: "building" },
+  { name: "Rwanda Standards Board (RSB)", icon: "building" },
+  { name: "National Industrial Research & Development Agency", icon: "chart-line" },
+  { name: "Rwanda Mines, Petroleum & Gas Board", icon: "bolt" },
+  { name: "Rwanda Agriculture Board (RAB)", icon: "recycle" },
+
+  // Telecommunications
+  { name: "MTN Rwanda", icon: "bolt" },
+  { name: "Airtel Rwanda", icon: "bolt" },
+  { name: "RwandaTel", icon: "bolt" },
+
+  // Real Estate & Construction
+  { name: "Century Real Estate Rwanda", icon: "building" },
+  { name: "Vision City Kigali", icon: "building" },
+  { name: "Novare Kigali Gateway", icon: "building" },
+  { name: "Kigali Heights", icon: "building" },
+  { name: "Pension Plaza Kigali", icon: "building" },
+
+  // Hospitality & Tourism
+  { name: "Kigali Marriott Hotel", icon: "building" },
+  { name: "Radisson Blu Hotel Kigali", icon: "building" },
+  { name: "Serena Hotel Kigali", icon: "building" },
+  { name: "Hotel des Mille Collines", icon: "building" },
+  { name: "Lemigo Hotel", icon: "building" },
+  { name: "Park Inn by Radisson Kigali", icon: "building" },
+  { name: "Gorillas Hotels Rwanda", icon: "building" },
+
+  // Transport & Logistics
+  { name: "RwandAir", icon: "truck" },
+  { name: "DHL Rwanda", icon: "truck" },
+  { name: "Rwanda Transport Development Agency", icon: "truck" },
+
+  // Energy
+  { name: "Rwanda Energy Group (REG)", icon: "bolt" },
+  { name: "Energy Development Corporation (EDCL)", icon: "bolt" },
+  { name: "Gigawatt Global Rwanda", icon: "bolt" },
+
+  // Agriculture, Food & Beverages
+  { name: "Bralirwa", icon: "building" },
+  { name: "Minimex Rwanda", icon: "building" },
+  { name: "East African Breweries Rwanda", icon: "building" },
+  { name: "Rwanda Cooperative Agency", icon: "recycle" },
+
+  // Healthcare
+  { name: "King Faisal Hospital Rwanda", icon: "hands-helping" },
+  { name: "Rwanda Military Hospital", icon: "hands-helping" },
+  { name: "Caraes Ndera Hospital", icon: "hands-helping" },
+  { name: "CHUK University Teaching Hospital", icon: "hands-helping" },
+
+  // Education
+  { name: "University of Rwanda", icon: "university" },
+  { name: "Carnegie Mellon University Africa", icon: "university" },
+  { name: "African Leadership University (ALU)", icon: "university" },
+  { name: "Rwanda Polytechnic", icon: "university" },
+  { name: "INES-Ruhengeri", icon: "university" },
+
+  // International Organizations
+  { name: "World Bank Rwanda", icon: "landmark" },
+  { name: "USAID Rwanda", icon: "flag" },
+  { name: "GIZ Rwanda", icon: "users" },
+  { name: "One Acre Fund Rwanda", icon: "users" },
+  { name: "Clinton Health Access Initiative (CHAI)", icon: "hands-helping" },
+  { name: "UNHCR Rwanda", icon: "flag" },
+  { name: "World Food Programme Rwanda", icon: "users" },
+
+  // Professional Services
+  { name: "KPMG Rwanda", icon: "chart-line" },
+  { name: "Deloitte Rwanda", icon: "chart-line" },
+  { name: "PwC Rwanda", icon: "chart-line" },
+  { name: "EY Rwanda", icon: "chart-line" },
+  { name: "BDO Rwanda", icon: "chart-line" },
+
+  // Retail & Commerce
+  { name: "Carrefour Rwanda", icon: "building" },
+  { name: "Simba Supermarket Rwanda", icon: "building" },
+  { name: "Bourbon Coffee", icon: "building" },
+  { name: "Inzozi Coffee Rwanda", icon: "building" },
+
+  // Technology
+  { name: "Andela Rwanda", icon: "chart-line" },
+  { name: "KLab Rwanda", icon: "chart-line" },
+  { name: "RSwitch", icon: "chart-line" },
+  { name: "BK TecHouse", icon: "chart-line" },
+
+  // NGOs & Civil Society
+  { name: "Save the Children Rwanda", icon: "users" },
+  { name: "Red Cross Rwanda", icon: "hands-helping" },
+  { name: "Doctors Without Borders Rwanda", icon: "hands-helping" },
+  { name: "Plan International Rwanda", icon: "users" },
+  { name: "World Vision Rwanda", icon: "users" },
 ];
 
 // Testimonials data
