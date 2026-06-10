@@ -16,7 +16,7 @@ const Clients = () => {
       
       <section className="py-28 bg-white">
         <div className="container mx-auto px-4">
-          <ClientsPartners />
+          <ClientsPartners showAll />
           <Testimonials />
         </div>
       </section>

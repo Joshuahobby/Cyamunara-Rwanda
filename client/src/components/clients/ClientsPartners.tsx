@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { clients } from "@/lib/constants";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -6,11 +7,21 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-const ClientsPartners = () => {
+const PER_PAGE = 24;
+
+interface ClientsPartnersProps {
+  showAll?: boolean;
+}
+
+const ClientsPartners = ({ showAll = false }: ClientsPartnersProps) => {
+  const [page, setPage] = useState(0);
+  const totalPages = Math.ceil(clients.length / PER_PAGE);
+  const pageClients = clients.slice(page * PER_PAGE, (page + 1) * PER_PAGE);
+
   return (
     <div>
       <motion.div
-        className="text-center mb-16"
+        className="text-center mb-12"
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -27,77 +38,134 @@ const ClientsPartners = () => {
         </p>
       </motion.div>
 
-      <div className="relative px-10">
-        <Swiper
-          modules={[Pagination, Autoplay, Navigation]}
-          spaceBetween={24}
-          slidesPerView={1}
-          navigation={{
-            prevEl: '.clients-prev',
-            nextEl: '.clients-next',
-          }}
-          pagination={{
-            clickable: true,
-            dynamicBullets: true,
-          }}
-          autoplay={{
-            delay: 3500,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          }}
-          loop={true}
-          speed={700}
-          grabCursor={true}
-          breakpoints={{
-            480:  { slidesPerView: 2, spaceBetween: 16 },
-            768:  { slidesPerView: 3, spaceBetween: 20 },
-            1024: { slidesPerView: 4, spaceBetween: 24 },
-            1280: { slidesPerView: 5, spaceBetween: 24 },
-          }}
-          className="pb-14"
-        >
-          {clients.map((client, index) => (
-            <SwiperSlide key={index}>
+      {showAll ? (
+        /* ── Grid view for /clients page ── */
+        <>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 mb-8">
+            {pageClients.map((client, index) => (
               <motion.div
-                className="flex items-center justify-center p-5 bg-light-gray rounded-lg hover:shadow-md hover:bg-white transition duration-300 h-28"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: (index % 10) * 0.05 }}
+                key={`${page}-${index}`}
+                className="flex flex-col items-center justify-center p-4 bg-light-gray rounded-lg hover:shadow-md hover:bg-white transition duration-300 h-28"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.02 }}
               >
-                <div className="text-center">
-                  <div className="text-navy mb-2 flex justify-center">
-                    <ClientIcon icon={client.icon} />
-                  </div>
-                  <h4 className="font-montserrat font-semibold text-xs text-navy-dark leading-tight line-clamp-2">
-                    {client.name}
-                  </h4>
+                <div className="text-navy mb-2 flex justify-center">
+                  <ClientIcon icon={client.icon} />
                 </div>
+                <h4 className="font-montserrat font-semibold text-xs text-navy-dark text-center leading-tight line-clamp-2">
+                  {client.name}
+                </h4>
               </motion.div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+            ))}
+          </div>
 
-        {/* Custom navigation arrows */}
-        <button
-          type="button"
-          className="clients-prev absolute left-0 top-1/2 -translate-y-6 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-navy text-white shadow-md hover:bg-gold hover:text-navy transition-colors duration-200 disabled:opacity-40"
-          aria-label="Previous"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button
-          type="button"
-          className="clients-next absolute right-0 top-1/2 -translate-y-6 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-navy text-white shadow-md hover:bg-gold hover:text-navy transition-colors duration-200 disabled:opacity-40"
-          aria-label="Next"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-      </div>
+          {/* Pagination */}
+          <div className="flex items-center justify-center gap-2 flex-wrap">
+            <button
+              type="button"
+              onClick={() => { setPage(p => Math.max(0, p - 1)); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              disabled={page === 0}
+              className="px-4 py-2 rounded-lg bg-navy text-white text-sm font-medium disabled:opacity-40 hover:bg-gold hover:text-navy transition-colors duration-200"
+            >
+              ← Prev
+            </button>
+
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => { setPage(i); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                className={`w-9 h-9 rounded-lg text-sm font-semibold transition-colors duration-200 ${
+                  i === page
+                    ? 'bg-gold text-navy'
+                    : 'bg-light-gray text-navy-dark hover:bg-navy hover:text-white'
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+
+            <button
+              type="button"
+              onClick={() => { setPage(p => Math.min(totalPages - 1, p + 1)); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              disabled={page === totalPages - 1}
+              className="px-4 py-2 rounded-lg bg-navy text-white text-sm font-medium disabled:opacity-40 hover:bg-gold hover:text-navy transition-colors duration-200"
+            >
+              Next →
+            </button>
+          </div>
+
+          <p className="text-center text-xs text-medium-gray mt-3">
+            Showing {page * PER_PAGE + 1}–{Math.min((page + 1) * PER_PAGE, clients.length)} of {clients.length} partners
+          </p>
+        </>
+      ) : (
+        /* ── Carousel view for Home page ── */
+        <div className="relative px-10">
+          <Swiper
+            modules={[Pagination, Autoplay, Navigation]}
+            spaceBetween={24}
+            slidesPerView={1}
+            navigation={{
+              prevEl: '.clients-prev',
+              nextEl: '.clients-next',
+            }}
+            pagination={{ clickable: true, dynamicBullets: true }}
+            autoplay={{ delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true }}
+            loop={true}
+            speed={700}
+            grabCursor={true}
+            breakpoints={{
+              480:  { slidesPerView: 2, spaceBetween: 16 },
+              768:  { slidesPerView: 3, spaceBetween: 20 },
+              1024: { slidesPerView: 4, spaceBetween: 24 },
+              1280: { slidesPerView: 5, spaceBetween: 24 },
+            }}
+            className="pb-14"
+          >
+            {clients.map((client, index) => (
+              <SwiperSlide key={index}>
+                <motion.div
+                  className="flex items-center justify-center p-5 bg-light-gray rounded-lg hover:shadow-md hover:bg-white transition duration-300 h-28"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: (index % 10) * 0.05 }}
+                >
+                  <div className="text-center">
+                    <div className="text-navy mb-2 flex justify-center">
+                      <ClientIcon icon={client.icon} />
+                    </div>
+                    <h4 className="font-montserrat font-semibold text-xs text-navy-dark leading-tight line-clamp-2">
+                      {client.name}
+                    </h4>
+                  </div>
+                </motion.div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          <button
+            type="button"
+            className="clients-prev absolute left-0 top-1/2 -translate-y-6 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-navy text-white shadow-md hover:bg-gold hover:text-navy transition-colors duration-200 disabled:opacity-40"
+            aria-label="Previous"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            className="clients-next absolute right-0 top-1/2 -translate-y-6 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-navy text-white shadow-md hover:bg-gold hover:text-navy transition-colors duration-200 disabled:opacity-40"
+            aria-label="Next"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      )}
     </div>
   );
 };
@@ -162,8 +230,8 @@ const ClientIcon = ({ icon }: ClientIconProps) => {
     university: (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
       </svg>
     ),
   };
