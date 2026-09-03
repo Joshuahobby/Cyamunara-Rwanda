@@ -1,4 +1,4 @@
-import { Contact, ContactSubmission, type InsertContact } from "@shared/schema";
+import { Contact, ContactSubmission, type InsertContact } from "../shared/schema";
 
 // modify the interface with any CRUD methods
 // you might need
@@ -44,7 +44,16 @@ export class MemStorage implements IStorage {
   async saveContactSubmission(contactData: InsertContact): Promise<Contact> {
     const id = this.contactCurrentId++;
     const timestamp = new Date();
-    const contact: Contact = { ...contactData, id, createdAt: timestamp };
+    // Optional form fields arrive as `undefined`; the DB row type uses `null`.
+    const contact: Contact = {
+      id,
+      name: contactData.name,
+      email: contactData.email,
+      phone: contactData.phone ?? null,
+      service: contactData.service ?? null,
+      message: contactData.message,
+      createdAt: timestamp,
+    };
     this.contacts.set(id, contact);
     return contact;
   }

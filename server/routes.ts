@@ -1,10 +1,9 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { contactSchema } from "@shared/schema";
+import { contactSchema } from "../shared/schema";
 import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
-import nodemailer from "nodemailer";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Set up API routes
@@ -26,7 +25,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log("Contact form submission:", savedContact);
       
       /*
-      // Email sending example (commented out since we don't have SMTP credentials)
+      // Email sending example (commented out since we don't have SMTP credentials).
+      // To enable: npm i nodemailer @types/nodemailer, then re-add
+      //   import nodemailer from "nodemailer";
       const transporter = nodemailer.createTransport({
         host: "smtp.example.com",
         port: 587,
