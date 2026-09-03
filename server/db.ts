@@ -1,21 +1,40 @@
 import { neon } from "@neondatabase/serverless";
-import { drizzle } from "drizzle-orm/neon-http";
+import { drizzle as drizzleNeon } from "drizzle-orm/neon-http";
+import { drizzle as drizzlePostgres } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
 import * as schema from "../shared/schema";
 
-// Neon's HTTP driver is used rather than a TCP pool because the production
-// target is serverless: each invocation is short-lived, so a pool would keep
-// opening connections it never gets to reuse.
+// The production target is serverless, where each invocation is short-lived.
 //
-// This expects a Neon-backed Postgres (Vercel Postgres and Replit both are).
-// For a non-Neon host such as Supabase or self-hosted Postgres, swap this for
-// `drizzle-orm/postgres-js` (or node-postgres) and install that driver; the
-// storage layer above it does not change.
+// On Neon (Vercel Postgres and Replit both are) the HTTP driver is the right
+// fit: it issues queries over fetch, so there is no TCP pool to keep opening
+// connections that never get reused.
+//
+// Any other Postgres — Supabase, RDS, self-hosted — goes through postgres-js
+// with the pool capped at one connection, which is what keeps a serverless
+// deployment from exhausting the server's connection limit under load.
 
 const connectionString = process.env.DATABASE_URL;
 
-export const db = connectionString
-  ? drizzle(neon(connectionString), { schema })
-  : null;
+function createClient(url: string) {
+  const isNeon = /\.neon\.tech(?::\d+)?(?:\/|$)/.test(new URL(url).host + "/");
+
+  if (isNeon) {
+    return drizzleNeon(neon(url), { schema });
+  }
+
+  return drizzlePostgres(
+    postgres(url, {
+      max: 1,
+      // Supabase's pooler and most managed hosts require TLS but present a
+      // certificate for the pooler rather than the database host.
+      ssl: url.includes("sslmode=disable") ? false : "require",
+    }),
+    { schema },
+  );
+}
+
+export const db = connectionString ? createClient(connectionString) : null;
 
 export const isDatabaseConfigured = db !== null;
 
