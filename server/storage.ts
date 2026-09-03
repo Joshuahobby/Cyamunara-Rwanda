@@ -1,4 +1,12 @@
-import { Contact, ContactSubmission, type InsertContact } from "../shared/schema";
+import { desc, eq } from "drizzle-orm";
+import {
+  Contact,
+  ContactSubmission,
+  contactSubmissions,
+  users,
+  type InsertContact,
+} from "../shared/schema";
+import { db } from "./db";
 
 // modify the interface with any CRUD methods
 // you might need
@@ -69,4 +77,75 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+/**
+ * Postgres-backed storage. Used whenever DATABASE_URL is set, which is what
+ * production needs: MemStorage cannot persist anything on serverless, where
+ * each invocation may run in a fresh instance.
+ */
+export class DbStorage implements IStorage {
+  private get client() {
+    if (!db) {
+      throw new Error("DbStorage requires DATABASE_URL to be set");
+    }
+    return db;
+  }
+
+  async getUser(id: number): Promise<any | undefined> {
+    const rows = await this.client
+      .select()
+      .from(users)
+      .where(eq(users.id, id))
+      .limit(1);
+    return rows[0];
+  }
+
+  async getUserByUsername(username: string): Promise<any | undefined> {
+    const rows = await this.client
+      .select()
+      .from(users)
+      .where(eq(users.username, username))
+      .limit(1);
+    return rows[0];
+  }
+
+  async createUser(user: any): Promise<any> {
+    const rows = await this.client.insert(users).values(user).returning();
+    return rows[0];
+  }
+
+  async saveContactSubmission(contactData: InsertContact): Promise<Contact> {
+    // Optional form fields arrive as `undefined`; the column is nullable.
+    const rows = await this.client
+      .insert(contactSubmissions)
+      .values({
+        name: contactData.name,
+        email: contactData.email,
+        phone: contactData.phone ?? null,
+        service: contactData.service ?? null,
+        message: contactData.message,
+      })
+      .returning();
+    return rows[0];
+  }
+
+  async getContactSubmissions(): Promise<Contact[]> {
+    return this.client
+      .select()
+      .from(contactSubmissions)
+      .orderBy(desc(contactSubmissions.createdAt));
+  }
+
+  async getContactSubmissionById(id: number): Promise<Contact | undefined> {
+    const rows = await this.client
+      .select()
+      .from(contactSubmissions)
+      .where(eq(contactSubmissions.id, id))
+      .limit(1);
+    return rows[0];
+  }
+}
+
+// Fall back to in-memory storage only when no database is configured, so local
+// development still runs without one. Anything persisted this way is lost on
+// restart, so production must set DATABASE_URL.
+export const storage: IStorage = db ? new DbStorage() : new MemStorage();
